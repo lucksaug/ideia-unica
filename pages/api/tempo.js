@@ -6,6 +6,8 @@ async function tempo(request, response){
     const dateResponseJson = await dateResponse.json();
     const dia = dateResponseJson.date;
 
+    response.setHeader('Cache-Control', 's-maxage=10, stale-while-revalidate');
+    
     response.json({
         date: dynamicDate.toGMTString(),
         nasa_date: dia
